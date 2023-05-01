@@ -35,16 +35,14 @@ type Kabel struct {
 
 // Greet returns a greeting for the given name
 func (a *App) Print1(people Kabel) string {
-	var kablar []Kabel
-	// json.Unmarshal(content, &friends)
-	err2 := json.Unmarshal([]byte(people.Fname), &kablar)
-	if err2 != nil {
-		fmt.Println("Error JSON Unmarshalling")
-		fmt.Println(err2.Error())
+
+	//--------------------------------------------
+	u, err := json.Marshal(Kabel(people))
+	if err != nil {
+		panic(err)
 	}
-	for _, x := range kablar {
-		fmt.Printf("%s \n", x.Fname)
-	}
-	fmt.Printf("%s \n", people.Fname)
-	return fmt.Sprintf("Hello %s", people.Fname)
+	fmt.Println(string(u))
+	//--------------------------------------------
+
+	return fmt.Sprintf("Hello")
 }
