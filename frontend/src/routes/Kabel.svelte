@@ -18,6 +18,7 @@
 		}
 	];
 
+
 	let prefix = '';
 	let first = '';
 	let last = '';
@@ -48,12 +49,17 @@
 
 	function print2() {
 		document.getElementById("demo").innerHTML = JSON.stringify(people, null, 4);
+		
 		//var a = ["a", "b", "c"];
 		//for (i = 0; i < people.length; i++)
 		    //document.getElementById("demo").innerHTML += JSON.stringify((i+1) + ": " + people[i]);
   			//document.writeln((i+1) + ": " + people[i]);
         //document.getElementById("demo").innerHTML = people.first;
 	}
+
+	function Print() {
+		 Print1.apply(null, people)
+  }
 
 	function remove() {
 		// Remove selected person from the source array (people), not the filtered array
@@ -87,7 +93,7 @@
 	<button on:click={update} disabled="{!first || !last || !selected}">update</button>
 	<button on:click={remove} disabled="{!selected}">delete</button>
 	<button class="btn" on:click={print2}>Submit</button>
-	<button on:click={Print1}>Print</button>
+	<button on:click={Print}>Print</button>
 </div>
 <p id="demo"></p>
 <style>
