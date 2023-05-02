@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 )
 
@@ -24,7 +23,7 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 }
 
-func (b *App) shutdown(ctx context.Context) {
+func (a *App) shutdown(ctx context.Context) {
 
 }
 
@@ -33,16 +32,23 @@ type Kabel struct {
 	Sname string `json:"last"`
 }
 
-// Greet returns a greeting for the given name
-func (a *App) Print1(people Kabel) string {
+// Print1 Prints all people passed and lists first person
+func (a *App) Print1(people []Kabel) string {
 
 	//--------------------------------------------
-	u, err := json.Marshal(Kabel(people))
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(u))
+	//u, err := json.Marshal(Kabel(people))
+	//if err != nil {
+	//	panic(err)
+	//}
+	//fmt.Println(string(u))
 	//--------------------------------------------
+	fmt.Println("all people:", people)
+	fmt.Println("First person is", people[0].Fname, people[0].Sname)
+	return fmt.Sprintf("Hello %s", people[0].Fname)
+}
 
-	return fmt.Sprintf("Hello")
+// GreetPerson Greet a singular person
+func (a *App) GreetPerson(person Kabel) string {
+	fmt.Println("Hello", person.Fname)
+	return fmt.Sprintf("Hello %s", person.Fname)
 }
